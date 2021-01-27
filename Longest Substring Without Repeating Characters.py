@@ -6,7 +6,27 @@
 
 
 ## Yang script
+class LongestSubstringWithoutDup:
+  def solution(self, s):
+    ans = 0
+    dups = {}
+    i, j = 0, 0
+    while j < len(s):
+      # need to jump?
+      if s[j] in dups:
+        # if i exceeds destination already
+        if i >= dups[s[j]] + 1:
+          pass
+        # jumping only makes sense otherwise
+        else:
+          i = dups[s[j]] + 1
 
+      # update global answer either jump or not
+      ans = max(ans, j - i + 1)
+      # update the last seen idx on either new or existing char
+      dups[s[j]] = j
+      # advance j till the end -> O(n)
+      j += 1
 
 ## my script
 class Solution:
